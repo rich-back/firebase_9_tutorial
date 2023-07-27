@@ -45,8 +45,8 @@ const unsubCol = onSnapshot(q, (snapshot) => {
   let books = [];
   snapshot.docs.forEach((doc) => {
     books.push({ ...doc.data(), id: doc.id });
-  });
-  console.log(books);
+});
+console.log(books);
 });
 
 // adding books
@@ -78,7 +78,7 @@ deleteBookForm.addEventListener("submit", (e) => {
 const docRef = doc(db, "books", "cU4J49dEX35vVDiVr86L");
 
 const unsubDoc = onSnapshot(docRef, (doc) => {
-  console.log(doc.data(), doc.id);
+//   console.log(doc.data(), doc.id);
 });
 
 // updating books
@@ -119,7 +119,7 @@ const logoutButton = document.querySelector(".logout");
 logoutButton.addEventListener("click", () => {
   signOut(auth)
     .then(() => {
-    //   console.log("the user signed out");
+      console.log("the user signed out: ");
     })
     .catch((err) => {
       console.log(err.message);
@@ -135,7 +135,7 @@ loginForm.addEventListener("submit", (e) => {
 
   signInWithEmailAndPassword(auth, email, password)
     .then((cred) => {
-    //   console.log("user logged in: ", cred.user);
+      //   console.log("user logged in: ", cred.user);
     })
     .catch((err) => {
       console.log(err.message);
@@ -149,9 +149,9 @@ const unsubAuth = onAuthStateChanged(auth, (user) => {
 
 // unsubscribing from changes (auth & db)
 const unsubButton = document.querySelector(".unsub");
-unsubButton.addEventListener("click", () => { 
-    console.log('unsubscribing: ')
-    unsubCol()
-    unsubDoc()
-    unsubAuth()
- })
+unsubButton.addEventListener("click", () => {
+  console.log("unsubscribing: ");
+  unsubCol();
+  unsubDoc();
+  unsubAuth();
+});
